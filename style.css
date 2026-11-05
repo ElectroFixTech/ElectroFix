@@ -1,0 +1,213 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #0b0d12;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 8%;
+    background: #11151d;
+    border-bottom: 1px solid #252b36;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #00d9ff;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #00d9ff;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #111c2c, #0b0d12);
+}
+
+.hero h1 {
+    font-size: 45px;
+    color: #00d9ff;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    color: #aaa;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.main-btn {
+    display: inline-block;
+    background: #00c8ed;
+    color: #071018;
+    padding: 14px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.main-btn:hover {
+    background: #ffffff;
+    transform: translateY(-3px);
+}
+
+.categories {
+    padding: 65px 8%;
+    text-align: center;
+}
+
+.categories h2,
+.tutorials h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+    color: #00d9ff;
+}
+
+.subtitle {
+    color: #999;
+    margin-bottom: 40px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: #151a24;
+    border: 1px solid #252d3a;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    color: white;
+    font: inherit;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #00d9ff;
+    box-shadow: 0 8px 25px #00d9ff20;
+}
+
+.card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+}
+
+.card h3 {
+    padding: 20px 10px;
+    font-size: 18px;
+}
+
+.tutorials {
+    padding: 60px 8%;
+    text-align: center;
+    background: #11151d;
+    min-height: 200px;
+}
+
+.tutorials p {
+    color: #aaa;
+    margin-top: 15px;
+}
+
+#video-container {
+    margin-top: 30px;
+}
+
+footer {
+    text-align: center;
+    padding: 35px;
+    background: #080a0e;
+    color: #888;
+}
+
+footer h3 {
+    color: #00d9ff;
+    margin-bottom: 12px;
+}
+
+footer p {
+    margin: 8px;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .card img {
+        height: 120px;
+    }
+
+    .card h3 {
+        font-size: 15px;
+    }
+}.video-card {
+    background: #151a24;
+    padding: 20px;
+    border-radius: 14px;
+    margin: 20px auto;
+    max-width: 750px;
+    border: 1px solid #252d3a;
+}
+
+.video-card h3 {
+    color: #00d9ff;
+    margin-bottom: 15px;
+}
+
+.video-card iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 10px;
+}
