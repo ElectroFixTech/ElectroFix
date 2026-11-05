@@ -3,16 +3,28 @@ const tutorials = {
     headphones: {
         title: "صيانة السماعات",
         videos: [
-            { name: "فيديو 1 - السماعات", url: "https://youtube.com/watch?v=xSpJSgN2IQw&si=MjqstJGK2VHFGmst" },
-            { name: "فيديو 2 - السماعات", url: "https://youtube.com/watch?v=ozz0faw99L8&si=Nod0inG2LTHfF7r7" }
+            {
+                name: "فيديو 1 - السماعات",
+                url: "https://youtube.com/watch?v=xSpJSgN2IQw&si=MjqstJGK2VHFGmst"
+            },
+            {
+                name: "فيديو 2 - السماعات",
+                url: "https://youtube.com/watch?v=ozz0faw99L8&si=Nod0inG2LTHfF7r7"
+            }
         ]
     },
 
     batteries: {
         title: "البطاريات",
         videos: [
-            { name: "فيديو 1 - البطاريات", url: "https://youtube.com/watch?v=bHc7DlWW7pc&si=U-IDRKqn_dXjM8pE" },
-            { name: "فيديو 2 - البطاريات", url: "https://youtube.com/watch?v=7hnPB0c2U0c&si=bS1GZ9zsJmgS0kMU" }
+            {
+                name: "فيديو 1 - البطاريات",
+                url: "https://youtube.com/watch?v=bHc7DlWW7pc&si=U-IDRKqn_dXjM8pE"
+            },
+            {
+                name: "فيديو 2 - البطاريات",
+                url: "https://youtube.com/watch?v=7hnPB0c2U0c&si=bS1GZ9zsJmgS0kMU"
+            }
         ]
     },
 
@@ -49,6 +61,28 @@ const tutorials = {
     }
 };
 
+// تحويل رابط YouTube العادي إلى Embed
+function convertToEmbed(url) {
+    try {
+        const parsed = new URL(url);
+        let id = "";
+
+        if (parsed.hostname.includes("youtu.be")) {
+            id = parsed.pathname.slice(1);
+        } else if (parsed.pathname === "/watch") {
+            id = parsed.searchParams.get("v");
+        } else if (parsed.pathname.startsWith("/embed/")) {
+            id = parsed.pathname.split("/")[2];
+        }
+
+        return id
+            ? `https://www.youtube.com/embed/${id}`
+            : "";
+    } catch {
+        return "";
+    }
+}
+
 const cards = document.querySelectorAll(".card");
 const title = document.getElementById("tutorial-title");
 const message = document.getElementById("tutorial-message");
@@ -74,6 +108,10 @@ cards.forEach(card => {
             message.textContent = "الفيديوهات التعليمية";
 
             availableVideos.forEach(video => {
+                const embedUrl = convertToEmbed(video.url);
+
+                if (!embedUrl) return;
+
                 const videoCard = document.createElement("div");
                 videoCard.className = "video-card";
 
@@ -81,9 +119,7 @@ cards.forEach(card => {
                 heading.textContent = video.name;
 
                 const iframe = document.createElement("iframe");
-
-                // اكتب رابط YouTube Embed في خانة url
-                iframe.src = video.url;
+                iframe.src = embedUrl;
                 iframe.title = video.name;
                 iframe.loading = "lazy";
                 iframe.allowFullscreen = true;
