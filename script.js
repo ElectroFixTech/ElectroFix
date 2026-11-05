@@ -40,7 +40,7 @@ const tutorials = {
         title: "شاشات الموبايل",
         videos: [
             { name: "فيديو 1 - الشاشات", url: "https://www.youtube.com/embed/j28l0Sq2c5g" },
-            { name: "فيديو 2 - الشاشات", url: "" }
+            { name: "فيديو 2 - الشاشات", url: "https://www.youtube.com/embed/tQXTBl70LJw" }
         ]
     },
 
