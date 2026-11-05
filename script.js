@@ -119,7 +119,7 @@ cards.forEach(card => {
                 heading.textContent = video.name;
 
                 const iframe = document.createElement("iframe");
-                iframe.src = embedUrl;
+                iframe.src = embedUrl + "?rel=0";
                 iframe.title = video.name;
                 iframe.loading = "lazy";
                 iframe.allowFullscreen = true;
