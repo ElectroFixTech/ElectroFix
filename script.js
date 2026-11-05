@@ -1,70 +1,70 @@
+
 const tutorials = {
     headphones: {
         title: "صيانة السماعات",
         videos: [
             {
-                name: "شرح صيانة السماعات",
-                url: "https://www.youtube.com/embed?listType=search&list=headphones+repair+tutorial"
+                name: "شرح صيانة السماعات اللاسلكية",
+                url: "https://www.youtube.com/embed/YaMrG69FRM8"
+            },
+            {
+                name: "شرح أعطال سماعات الصب",
+                url: "https://www.youtube.com/embed/xSpJSgN2IQw"
             }
         ]
     },
 
-    motherboards: {
-    title: "صيانة البورد الإلكترونية",
-    videos: [
-        {
-            name: "شرح صيانة البورد",
-            url: "https://www.youtube.com/embed/1cUSNyzU1K4"
-        }
-    ]
-},
-
     batteries: {
-        title: "صيانة البطاريات",
+        title: "البطاريات",
         videos: [
             {
-                name: "شرح فحص البطاريات بأمان",
-                url: "https://www.youtube.com/embed?listType=search&list=battery+safety+and+testing+tutorial"
+                name: "فحص البطاريات واستخدامها بأمان",
+                url: "https://www.youtube.com/embed?listType=search&list=" +
+                    encodeURIComponent("فحص البطاريات بأمان وشرح أنواع البطاريات")
             }
         ]
     },
 
     chargers: {
-        title: "صيانة شواحن الموبايل",
+        title: "شواحن الموبايل",
         videos: [
             {
-                name: "شرح صيانة الشواحن",
-                url: "https://www.youtube.com/embed?listType=search&list=phone+charger+repair+tutorial"
+                name: "أساسيات شواحن الموبايل والسلامة",
+                url: "https://www.youtube.com/embed?listType=search&list=" +
+                    encodeURIComponent("شرح شواحن الموبايل وأساسيات الإلكترونيات")
             }
         ]
     },
 
     screens: {
-        title: "صيانة شاشات الموبايل",
+        title: "شاشات الموبايل",
         videos: [
             {
-                name: "شرح صيانة شاشات الموبايل",
-                url: "https://www.youtube.com/embed?listType=search&list=mobile+screen+repair+tutorial"
+                name: "شرح أعطال شاشات الموبايل",
+                url: "https://www.youtube.com/embed?listType=search&list=" +
+                    encodeURIComponent("شرح أعطال شاشات الموبايل بالعربي")
             }
         ]
     },
 
     computers: {
-        title: "صيانة الكمبيوتر واللابتوب",
+        title: "الكمبيوتر واللابتوب",
         videos: [
             {
-                name: "شرح صيانة اللابتوب",
-                url: "https://www.youtube.com/embed?listType=search&list=laptop+repair+tutorial"
+                name: "تعليم صيانة الكمبيوتر واللابتوب",
+                url: "https://www.youtube.com/embed?listType=search&list=" +
+                    encodeURIComponent("تعليم صيانة الكمبيوتر واللابتوب للمبتدئين بالعربي")
             }
         ]
     },
 
     remotes: {
-        title: "صيانة الريموتات والأجهزة",
+        title: "الريموتات والأجهزة",
         videos: [
             {
-                name: "شرح صيانة الريموت",
-                url: "https://www.youtube.com/embed?listType=search&list=remote+control+repair+tutorial"
+                name: "شرح أعطال الريموتات والأجهزة",
+                url: "https://www.youtube.com/embed?listType=search&list=" +
+                    encodeURIComponent("شرح أعطال الريموت كنترول بالعربي")
             }
         ]
     }
@@ -80,9 +80,10 @@ cards.forEach(card => {
         const category = card.dataset.category;
         const selected = tutorials[category];
 
+        if (!selected) return;
+
         title.textContent = selected.title;
         message.textContent = "اختر الفيديو لمشاهدة الشرح";
-
         container.innerHTML = "";
 
         selected.videos.forEach(video => {
@@ -94,8 +95,11 @@ cards.forEach(card => {
 
             const iframe = document.createElement("iframe");
             iframe.src = video.url;
+            iframe.title = video.name;
+            iframe.loading = "lazy";
             iframe.allowFullscreen = true;
-            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+            iframe.allow =
+                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
 
             videoCard.appendChild(heading);
             videoCard.appendChild(iframe);
