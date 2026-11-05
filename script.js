@@ -4,67 +4,42 @@ const tutorials = {
         title: "صيانة السماعات",
         videos: [
             {
-                name: "شرح صيانة السماعات اللاسلكية",
-                url: "https://www.youtube.com/embed/YaMrG69FRM8"
-            },
-            {
-                name: "شرح أعطال سماعات الصب",
-                url: "https://www.youtube.com/embed/xSpJSgN2IQw"
+                name: "شرح صيانة السماعات",
+                id: "xGxhshp6KQY"
             }
         ]
     },
 
     batteries: {
         title: "البطاريات",
-        videos: [
-            {
-                name: "فحص البطاريات واستخدامها بأمان",
-                url: "https://www.youtube.com/embed?listType=search&list=" +
-                    encodeURIComponent("فحص البطاريات بأمان وشرح أنواع البطاريات")
-            }
-        ]
+        videos: []
     },
 
     chargers: {
         title: "شواحن الموبايل",
-        videos: [
-            {
-                name: "أساسيات شواحن الموبايل والسلامة",
-                url: "https://www.youtube.com/embed?listType=search&list=" +
-                    encodeURIComponent("شرح شواحن الموبايل وأساسيات الإلكترونيات")
-            }
-        ]
+        videos: []
     },
 
     screens: {
         title: "شاشات الموبايل",
-        videos: [
-            {
-                name: "شرح أعطال شاشات الموبايل",
-                url: "https://www.youtube.com/embed?listType=search&list=" +
-                    encodeURIComponent("شرح أعطال شاشات الموبايل بالعربي")
-            }
-        ]
+        videos: []
     },
 
     computers: {
         title: "الكمبيوتر واللابتوب",
-        videos: [
-            {
-                name: "تعليم صيانة الكمبيوتر واللابتوب",
-                url: "https://www.youtube.com/embed?listType=search&list=" +
-                    encodeURIComponent("تعليم صيانة الكمبيوتر واللابتوب للمبتدئين بالعربي")
-            }
-        ]
+        videos: []
     },
 
     remotes: {
         title: "الريموتات والأجهزة",
         videos: [
             {
-                name: "شرح أعطال الريموتات والأجهزة",
-                url: "https://www.youtube.com/embed?listType=search&list=" +
-                    encodeURIComponent("شرح أعطال الريموت كنترول بالعربي")
+                name: "شرح الريموتات",
+                id: "pgu72cJwPfw"
+            },
+            {
+                name: "شرح أعطال الريموت",
+                id: "as9qy_bAgeU"
             }
         ]
     }
@@ -83,8 +58,14 @@ cards.forEach(card => {
         if (!selected) return;
 
         title.textContent = selected.title;
-        message.textContent = "اختر الفيديو لمشاهدة الشرح";
         container.innerHTML = "";
+
+        if (selected.videos.length === 0) {
+            message.textContent = "سيتم إضافة الفيديوهات قريبًا";
+            return;
+        }
+
+        message.textContent = "شاهد الفيديوهات التعليمية";
 
         selected.videos.forEach(video => {
             const videoCard = document.createElement("div");
@@ -94,15 +75,13 @@ cards.forEach(card => {
             heading.textContent = video.name;
 
             const iframe = document.createElement("iframe");
-            iframe.src = video.url;
+            iframe.src = `https://www.youtube.com/embed/${video.id}`;
             iframe.title = video.name;
             iframe.loading = "lazy";
             iframe.allowFullscreen = true;
-            iframe.allow =
-                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
 
-            videoCard.appendChild(heading);
-            videoCard.appendChild(iframe);
+            videoCard.append(heading, iframe);
             container.appendChild(videoCard);
         });
 
