@@ -47,7 +47,7 @@ const tutorials = {
     computers: {
         title: "الكمبيوتر واللابتوب",
         videos: [
-            { name: "فيديو 1 - الكمبيوتر", url: "https://www.youtube.com/embed/Ht87FThvKuc" },
+            { name: "فيديو 1 - الكمبيوتر", url: "https://www.youtube.com/embed/CVgjU1zg_C4" },
             { name: "فيديو 2 - الكمبيوتر", url: "https://www.youtube.com/embed/FxVwJ5ZZAqE" }
         ]
     },
