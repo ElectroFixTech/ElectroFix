@@ -4,35 +4,60 @@ const tutorials = {
         title: "صيانة السماعات",
         videos: [
             {
-                name: "شرح صيانة السماعات",
-                id: "1cUSNyzU1K4"
+                name: "أسرار صيانة السماعات اللاسلكية",
+                id: "YaMrG69FRM8"
             }
         ]
     },
 
     batteries: {
         title: "البطاريات",
-        videos: []
+        videos: [
+            {
+                name: "البطاريات وكيف تعمل",
+                id: "kZq6wgiUj5Y"
+            }
+        ]
     },
 
     chargers: {
         title: "شواحن الموبايل",
-        videos: []
+        videos: [
+            {
+                name: "كيف يعمل شاحن الهاتف الذكي",
+                id: "95-zoh60Wek"
+            }
+        ]
     },
 
     screens: {
         title: "شاشات الموبايل",
-        videos: []
+        videos: [
+            {
+                name: "معرفة مكونات شاشة الموبايل",
+                id: "qZD_lBTFqqg"
+            }
+        ]
     },
 
     computers: {
         title: "الكمبيوتر واللابتوب",
-        videos: []
+        videos: [
+            {
+                name: "مكونات الكمبيوتر من الداخل",
+                id: "Ht87FThvKuc"
+            }
+        ]
     },
 
     remotes: {
         title: "الريموتات والأجهزة",
-        videos: []
+        videos: [
+            {
+                name: "طريقة إصلاح الريموت كنترول",
+                id: "GtH-4EhPxB0"
+            }
+        ]
     }
 };
 
@@ -49,31 +74,27 @@ cards.forEach(card => {
         if (!selected) return;
 
         title.textContent = selected.title;
+        message.textContent = "الفيديوهات التعليمية";
         container.innerHTML = "";
 
-        if (selected.videos.length === 0) {
-            message.textContent = "سيتم إضافة الفيديوهات قريبًا";
-        } else {
-            message.textContent = "شاهد الفيديو التعليمي";
+        selected.videos.forEach(video => {
+            const videoCard = document.createElement("div");
+            videoCard.className = "video-card";
 
-            selected.videos.forEach(video => {
-                const videoCard = document.createElement("div");
-                videoCard.className = "video-card";
+            const heading = document.createElement("h3");
+            heading.textContent = video.name;
 
-                const heading = document.createElement("h3");
-                heading.textContent = video.name;
+            const iframe = document.createElement("iframe");
+            iframe.src = `https://www.youtube.com/embed/${video.id}`;
+            iframe.title = video.name;
+            iframe.loading = "lazy";
+            iframe.allowFullscreen = true;
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
 
-                const iframe = document.createElement("iframe");
-                iframe.src = `https://www.youtube.com/embed/${video.id}`;
-                iframe.title = video.name;
-                iframe.loading = "lazy";
-                iframe.allowFullscreen = true;
-                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-
-                videoCard.append(heading, iframe);
-                container.appendChild(videoCard);
-            });
-        }
+            videoCard.appendChild(heading);
+            videoCard.appendChild(iframe);
+            container.appendChild(videoCard);
+        });
 
         document.getElementById("tutorials").scrollIntoView({
             behavior: "smooth"
