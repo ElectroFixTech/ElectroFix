@@ -31,8 +31,8 @@ const tutorials = {
     chargers: {
         title: "شواحن الموبايل",
         videos: [
-            { name: "فيديو 1 - الشواحن", url: "" },
-            { name: "فيديو 2 - الشواحن", url: "" }
+            { name: "فيديو 1 - الشواحن", url: "https://youtube.com/watch?v=PGlk3NP-Tgo&si=0ZJhz3jrUbvUJmcd" },
+            { name: "فيديو 2 - الشواحن", url: "https://youtube.com/watch?v=E9VvP7Mebj4&si=3bVZsxwqFFYzWgFb" }
         ]
     },
 
