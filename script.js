@@ -3,60 +3,48 @@ const tutorials = {
     headphones: {
         title: "صيانة السماعات",
         videos: [
-            {
-                name: "أسرار صيانة السماعات اللاسلكية",
-                id: "YaMrG69FRM8"
-            }
+            { name: "فيديو 1 - السماعات", url: "https://youtube.com/watch?v=xSpJSgN2IQw&si=MjqstJGK2VHFGmst" },
+            { name: "فيديو 2 - السماعات", url: "https://youtube.com/watch?v=ozz0faw99L8&si=Nod0inG2LTHfF7r7" }
         ]
     },
 
     batteries: {
         title: "البطاريات",
         videos: [
-            {
-                name: "البطاريات وكيف تعمل",
-                id: "kZq6wgiUj5Y"
-            }
+            { name: "فيديو 1 - البطاريات", url: "https://youtube.com/watch?v=bHc7DlWW7pc&si=U-IDRKqn_dXjM8pE" },
+            { name: "فيديو 2 - البطاريات", url: "https://youtube.com/watch?v=7hnPB0c2U0c&si=bS1GZ9zsJmgS0kMU" }
         ]
     },
 
     chargers: {
         title: "شواحن الموبايل",
         videos: [
-            {
-                name: "كيف يعمل شاحن الهاتف الذكي",
-                id: "95-zoh60Wek"
-            }
+            { name: "فيديو 1 - الشواحن", url: "" },
+            { name: "فيديو 2 - الشواحن", url: "" }
         ]
     },
 
     screens: {
         title: "شاشات الموبايل",
         videos: [
-            {
-                name: "معرفة مكونات شاشة الموبايل",
-                id: "qZD_lBTFqqg"
-            }
+            { name: "فيديو 1 - الشاشات", url: "" },
+            { name: "فيديو 2 - الشاشات", url: "" }
         ]
     },
 
     computers: {
         title: "الكمبيوتر واللابتوب",
         videos: [
-            {
-                name: "مكونات الكمبيوتر من الداخل",
-                id: "Ht87FThvKuc"
-            }
+            { name: "فيديو 1 - الكمبيوتر", url: "" },
+            { name: "فيديو 2 - الكمبيوتر", url: "" }
         ]
     },
 
     remotes: {
         title: "الريموتات والأجهزة",
         videos: [
-            {
-                name: "طريقة إصلاح الريموت كنترول",
-                id: "GtH-4EhPxB0"
-            }
+            { name: "فيديو 1 - الريموتات", url: "" },
+            { name: "فيديو 2 - الريموتات", url: "" }
         ]
     }
 };
@@ -74,27 +62,39 @@ cards.forEach(card => {
         if (!selected) return;
 
         title.textContent = selected.title;
-        message.textContent = "الفيديوهات التعليمية";
         container.innerHTML = "";
 
-        selected.videos.forEach(video => {
-            const videoCard = document.createElement("div");
-            videoCard.className = "video-card";
+        const availableVideos = selected.videos.filter(
+            video => video.url.trim() !== ""
+        );
 
-            const heading = document.createElement("h3");
-            heading.textContent = video.name;
+        if (availableVideos.length === 0) {
+            message.textContent = "لم تتم إضافة فيديوهات لهذا القسم بعد.";
+        } else {
+            message.textContent = "الفيديوهات التعليمية";
 
-            const iframe = document.createElement("iframe");
-            iframe.src = `https://www.youtube.com/embed/${video.id}`;
-            iframe.title = video.name;
-            iframe.loading = "lazy";
-            iframe.allowFullscreen = true;
-            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+            availableVideos.forEach(video => {
+                const videoCard = document.createElement("div");
+                videoCard.className = "video-card";
 
-            videoCard.appendChild(heading);
-            videoCard.appendChild(iframe);
-            container.appendChild(videoCard);
-        });
+                const heading = document.createElement("h3");
+                heading.textContent = video.name;
+
+                const iframe = document.createElement("iframe");
+
+                // اكتب رابط YouTube Embed في خانة url
+                iframe.src = video.url;
+                iframe.title = video.name;
+                iframe.loading = "lazy";
+                iframe.allowFullscreen = true;
+                iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                iframe.allow =
+                    "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+                videoCard.append(heading, iframe);
+                container.appendChild(videoCard);
+            });
+        }
 
         document.getElementById("tutorials").scrollIntoView({
             behavior: "smooth"
